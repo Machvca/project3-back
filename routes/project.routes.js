@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 const Project = require('../models/Project.model');
+const Product = require('../models/Product.model');
 
 //  POST /api/projects  -  Creates a new project
 router.post('/projects', (req, res, next) => {
@@ -14,8 +15,13 @@ router.post('/projects', (req, res, next) => {
 });
 
 //  GET /api/projects -  Retrieves all of the projects
-router.get('/projects', (req, res, next) => {
-	Project.find().populate('tasks').then((allProjects) => res.json(allProjects)).catch((err) => res.json(err));
+// router.get('/projects', (req, res, next) => {
+// 	Project.find().populate('tasks').then((allProjects) => res.json(allProjects)).catch((err) => res.json(err));
+// });
+
+// 1a ruta
+router.get('/products', (req, res, next) => {
+	Product.find().then((allProducts) => res.json(allProducts)).catch((err) => res.json(err));
 });
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
