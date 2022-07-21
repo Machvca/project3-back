@@ -22,7 +22,7 @@ router.get("/products", (req, res, next) => {
 router.get("/products/keyboards", (req, res, next) => {
   Product.find({ type: "keyboard" })
     .then((keyProducts) => res.json(keyProducts))
-    .catch((err) => res.json(err));
+    .catch((err) => res.json(err)); 
   });
 
 router.get("/products/chairs", (req, res, next) => {
