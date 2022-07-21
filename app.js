@@ -22,6 +22,8 @@ app.use("/api", isAuthenticated, projectRouter);            // <== UPDATE
 const taskRouter = require("./routes/task.routes");
 app.use("/api",isAuthenticated, taskRouter);            // <== UPDATE
 
+const productsRouter = require("./routes/product.routes");
+app.use("/api",isAuthenticated, productsRouter);   
 
 // app.use((req, res, next) => {
 //     // If no routes match, send them the React HTML.

@@ -20,9 +20,7 @@ router.post('/projects', (req, res, next) => {
 // });
 
 // 1a ruta
-router.get('/products', (req, res, next) => {
-	Product.find().then((allProducts) => res.json(allProducts)).catch((err) => res.json(err));
-});
+
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
 router.get('/projects/:projectId', (req, res, next) => {
