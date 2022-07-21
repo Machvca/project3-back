@@ -43,7 +43,7 @@ router.get("/products/snacks", (req, res, next) => {
     .catch((err) => res.json(err));
   });
 
-router.get("/products/accessories", (req, res, next) => {
+router.get("/products/accesories", (req, res, next) => {
   Product.find({ type: "accessories" })
     .then((accProducts) => res.json(accProducts))
     .catch((err) => res.json(err));
