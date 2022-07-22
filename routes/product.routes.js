@@ -69,19 +69,20 @@ router.get("/products/monitors", (req, res, next) => {
   });  
 
   // Adding favorites. 
-  router.post("/add-favorite", (req, res) => {
-    const query = ({ name, type, color, image, price, description, link } =
+  router.post("/products/add-favorite", (req, res) => {
+    const query = ({ name, type, color, image, price, description, link, userId, _id} =
       req.body);
-      const userId = user._id;
+      console.log(query);
       console.log(userId);
-      const idToCheck = req.body.apiId;
+      console.log(query._id);
+      //const idToCheck = _id;
   
-    Product.find({_id: idToCheck }).then((ProductsArray) => {
+    Product.find({_id: query._id }).then((ProductsArray) => {
       
       if (ProductsArray.length === 0) {
         Product.create(query)
           .then((result) => {
-            User.findByIdAndUpdate(userId, {
+            User.findByIdAndUpdate(query.userId, {
               $push: { favorites: result.id },
             }).then(() => {
               res.status(200).json(ProductsArray);
@@ -89,10 +90,10 @@ router.get("/products/monitors", (req, res, next) => {
           })
           .catch((err) => res.json(err));
       } else {
-        User.findById(userId)
+        User.findById(query.userId)
           .then((user) => {
             if (!user.favorites.includes(ProductsArray[0]._id)) {
-              User.findByIdAndUpdate(userId, {
+              User.findByIdAndUpdate(query.userId, {
                 $push: { favorites: ProductsArray[0]._id },
               }).then((ProductsArray) => {
                 
