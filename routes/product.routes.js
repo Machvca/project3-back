@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Product = require("../models/Product.model");
+const User = require("../models/User.model");
 
 
 // Mostramos todos los articulos en esta vista. Pero no nos sirve para el proyecto
@@ -66,5 +67,47 @@ router.get("/products/monitors", (req, res, next) => {
     .then((monProducts) => res.json(monProducts))
     .catch((err) => res.json(err));
   });  
+
+  // Adding favorites. 
+  router.post("/add-favorite", (req, res) => {
+    const query = ({ name, type, color, image, price, description, link } =
+      req.body);
+      const userId = user._id;
+      console.log(userId);
+      const idToCheck = req.body.apiId;
+  
+    Product.find({_id: idToCheck }).then((ProductsArray) => {
+      
+      if (ProductsArray.length === 0) {
+        Product.create(query)
+          .then((result) => {
+            User.findByIdAndUpdate(userId, {
+              $push: { favorites: result.id },
+            }).then(() => {
+              res.status(200).json(ProductsArray);
+            });
+          })
+          .catch((err) => res.json(err));
+      } else {
+        User.findById(userId)
+          .then((user) => {
+            if (!user.favorites.includes(ProductsArray[0]._id)) {
+              User.findByIdAndUpdate(userId, {
+                $push: { favorites: ProductsArray[0]._id },
+              }).then((ProductsArray) => {
+                
+                res.status(200).json(ProductsArray);
+              });
+            } else {
+              res.status(200).json({message: "Hola"});
+            }
+          })
+          .catch((err) => {
+            res.json(err);
+          });
+      }
+    });
+  });
+  
 
 module.exports = router;
