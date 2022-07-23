@@ -109,6 +109,12 @@ router.get("/products/monitors", (req, res, next) => {
       }
     });
   });
+// trying to implement favs view
+  router.get("/products/favorites", (req, res, next) => {
+    Product.find({ _id: query._id })
+      .then(() => res.json(ProductsArray))
+      .catch((err) => res.json(err));
+    });  
   
 
 module.exports = router;
