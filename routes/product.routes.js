@@ -111,8 +111,16 @@ router.get("/products/monitors", (req, res, next) => {
   });
 // trying to implement favs view
   router.get("/products/favorites", (req, res, next) => {
-    Product.find({ _id: query._id })
-      .then(() => res.json(ProductsArray))
+
+
+const {_id } = req.payload
+
+    User.find({ _id: _id })
+    .populate("favorites")
+      .then((productsArray) => {
+        console.log(productsArray)
+        res.json(productsArray)})
+
       .catch((err) => res.json(err));
     });  
   
