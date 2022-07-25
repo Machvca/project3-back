@@ -123,6 +123,22 @@ const {_id } = req.payload
 
       .catch((err) => res.json(err));
     });  
-  
+
+    
+
+  router.post('/products/deletefavorites', (req, res, next) => {
+    console.log("entra en deleteeeee")
+    const { _id, userId } = req.body;
+    console.log(req.body)
+
+    User.findByIdAndUpdate(userId, {
+              $pull: { favorites: _id },
+            }).then((user) => {
+              console.log(user)
+              res.status(200).json(user);
+            })
+          
+            .catch((err) => res.json(err))
+            });
 
 module.exports = router;
