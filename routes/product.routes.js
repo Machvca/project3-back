@@ -141,4 +141,36 @@ const {_id } = req.payload
             .catch((err) => res.json(err))
             });
 
+
+
+
+
+
+//CREATE A PRODUCT:
+
+router.post("/product/create", async (req, res) => {
+    console.log("req body ------> ",req.body);
+    try {
+        const { name, type, color, image, price, description, link, } = req.body;
+        
+        const newProduct = await Product.create({
+            
+            name,
+            type,
+            color,
+            image,
+            price,
+            description,
+            link,
+        })
+
+        res.status(201).json(newProduct);
+    } catch (err) {
+        console.log(err);
+    }
+
+});
+
+
+
 module.exports = router;
