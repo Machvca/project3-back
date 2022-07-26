@@ -148,7 +148,7 @@ const {_id } = req.payload
 
 //CREATE A PRODUCT:
 
-router.post("/product/create", async (req, res) => {
+router.post("/products/create", async (req, res) => {
     console.log("req body ------> ",req.body);
     try {
         const { name, type, color, image, price, description, link, } = req.body;
