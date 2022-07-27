@@ -172,4 +172,10 @@ router.post("/products/create", async (req, res) => {
 
 });
 
+router.get("/products/:id",async(req, res, next) => {
+  Product.findById()
+    .then((detailsProduct) => res.json(detailsProduct))
+    .catch((err) => res.json(err));
+});
+
 module.exports = router;
