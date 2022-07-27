@@ -109,7 +109,8 @@ router.get("/products/monitors", (req, res, next) => {
       }
     });
   });
-// trying to implement favs view
+
+// Creating Favorites View
   router.get("/products/favorites", (req, res, next) => {
 
 
@@ -170,7 +171,5 @@ router.post("/products/create", async (req, res) => {
     }
 
 });
-
-
 
 module.exports = router;
