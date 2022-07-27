@@ -179,4 +179,13 @@ router.get("/products/:id",async(req, res, next) => {
     .catch((err) => res.json(err));
 });
 
+
+
+router.get("/products/find/:id",async(req, res, next) => {
+  const { id } = req.params;
+  Product.findById(id)
+    .then((detailsProduct) => res.json(detailsProduct))
+    .catch((err) => res.json(err));
+});
+
 module.exports = router;
