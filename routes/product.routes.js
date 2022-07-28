@@ -19,6 +19,22 @@ router.get("/products", (req, res, next) => {
     .catch((err) => res.json(err));
 });
 
+//Get one product 
+router.get(`/products/find/:id`,async(req,res,next)=>{
+  try {
+    const product = await Product.findById(req.params.id);
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
+
+
+
+
+
+
 // Let's create a new route for each category
 router.get("/products/keyboards", (req, res, next) => {
   Product.find({ type: "keyboard" })
