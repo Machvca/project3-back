@@ -1,7 +1,7 @@
 ### Instructions
 
 #### Instala dependencias
-- npm i holaaaa
+- npm i 
 #### Crea archivo .env y agrega variables de entorno
 ![.env](https://user-images.githubusercontent.com/14861253/170860925-8da6984f-791a-4f9a-8747-d7e4a4917310.png)
 - crea un archivo .env en la raíz del proyecto con las siguientes variables de entorno: <br>
